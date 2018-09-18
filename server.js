@@ -13,6 +13,7 @@ mongoose.connection.on('open',function(){
 
 
 const userController = require('./controllers/users');
+const productController = require('./controllers/products');
 
 const app = express();
 
@@ -33,6 +34,13 @@ app.get('/api/v1/users', userController.getAllUsers);
 app.get('/api/v1/users/:id', userController.getUserById);
 app.put('/api/v1/users/:id', userController.updateUserById);
 app.delete('/api/v1/users/:id', userController.deleteUserById);
+
+app.post('/api/v1/products', productController.postNewProduct);
+app.get('/api/v1/products', productController.getAllProducts);
+app.get('/api/v1/products/:id', productController.getProductById);
+app.put('/api/v1/products/:id', productController.updateProductById);
+app.delete('/api/v1/products/:id', productController.deleteProductById);
+
 
 app.set('port',3000);
 app.listen(app.get('port'),function(){
